@@ -6,14 +6,22 @@ import { DONATE_METHODS } from "@/lib/donate";
 import { isFirebaseAdminConfigured } from "@/lib/firebase/admin";
 import { listPublicSnippetsAdmin } from "@/lib/firebase/admin-snippets";
 import { TOOLS } from "@/lib/tools-registry";
-import { primaryButtonClass } from "@/lib/utils";
-import { Clock, FolderKanban, Plus, SquareCode } from "lucide-react";
+import { primaryButtonClass, secondaryButtonClass } from "@/lib/utils";
+import { Clock, Download, FolderKanban, Plus, Puzzle, SquareCode } from "lucide-react";
 import Link from "next/link";
 
 const DASHBOARD_BENEFITS = [
   { icon: Clock, title: "History, everywhere", text: "Every tool you use is saved automatically and follows you across devices." },
   { icon: FolderKanban, title: "Projects & collections", text: "Organize API requests, collections, and environments by project." },
   { icon: SquareCode, title: "Snippets & sharing", text: "Save reusable code, tag it, and share it with the world when you're ready." },
+];
+
+const EXTENSION_TOOLS = ["JSON Formatter", "JWT Decoder", "Base64", "URL Encoder", "UUID Generator", "Hash Generator"];
+
+const EXTENSION_STEPS = [
+  "Download the .zip and unzip it anywhere on your machine.",
+  "Open chrome://extensions (or edge://extensions) and turn on Developer mode.",
+  "Click \"Load unpacked\" and select the unzipped folder.",
 ];
 
 export default async function Home() {
@@ -35,6 +43,45 @@ export default async function Home() {
       </section>
 
       <ToolsExplorer />
+
+      <section className="border-t border-border py-24">
+        <div className="mx-auto grid max-w-5xl grid-cols-1 gap-10 px-4 sm:px-6 lg:grid-cols-[1.1fr_1fr] lg:items-center">
+          <div>
+            <p className="mb-3 flex items-center gap-2 text-sm font-medium text-accent">
+              <Puzzle className="h-4 w-4" />
+              Browser extension
+            </p>
+            <h2 className="text-3xl font-semibold tracking-tight text-foreground">The tools, one click away</h2>
+            <p className="mt-3 max-w-lg text-foreground-muted">
+              {EXTENSION_TOOLS.join(", ")} — right in your toolbar, no tab switch needed. Same client-side
+              guarantee as the site: nothing you type ever leaves your browser.
+            </p>
+            <div className="mt-6 flex flex-wrap items-center gap-3">
+              <a href="/downloads/devtools-cloud-extension-v0.1.0.zip" download className={primaryButtonClass}>
+                <Download className="h-3.5 w-3.5" />
+                Download for Chrome / Edge
+              </a>
+              <Link href="/extension" className={secondaryButtonClass}>
+                Install instructions
+              </Link>
+            </div>
+            <p className="mt-3 text-xs text-foreground-subtle">
+              Not on the Chrome Web Store yet — this installs it manually in a few seconds. Fully open source.
+            </p>
+          </div>
+
+          <ol className="flex flex-col gap-3 rounded-xl border border-border bg-surface p-5">
+            {EXTENSION_STEPS.map((step, index) => (
+              <li key={step} className="flex gap-3 text-sm text-foreground-muted">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent-soft text-xs font-semibold text-accent">
+                  {index + 1}
+                </span>
+                {step}
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
 
       <section className="border-t border-border py-24">
         <div className="mx-auto max-w-5xl px-4 sm:px-6">

@@ -29,6 +29,9 @@ export function SiteHeader() {
           <Link href="/docs" className="rounded-md px-3 py-1.5 transition-colors hover:bg-surface-hover hover:text-foreground">
             Docs
           </Link>
+          <Link href="/extension" className="rounded-md px-3 py-1.5 transition-colors hover:bg-surface-hover hover:text-foreground">
+            Extension
+          </Link>
           <HeaderDashboardLink />
           <Link
             href="/pricing"
