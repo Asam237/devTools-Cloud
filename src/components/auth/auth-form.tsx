@@ -3,7 +3,12 @@
 import { GoogleIcon } from "@/components/icons/google-icon";
 import { useAuth } from "@/components/auth-provider";
 import { authBackend } from "@/lib/auth";
-import { inputClass, labelClass, primaryButtonClass, secondaryButtonClass } from "@/lib/utils";
+import {
+  inputClass,
+  labelClass,
+  primaryButtonClass,
+  secondaryButtonClass,
+} from "@/lib/utils";
 import { AlertCircle, Github, Mail } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -57,7 +62,7 @@ export function AuthForm() {
 
   async function handleForgotPassword() {
     if (!email) {
-      setError("Enter your email above first, then click \"Forgot password\".");
+      setError('Enter your email above first, then click "Forgot password".');
       return;
     }
     setError(null);
@@ -77,9 +82,15 @@ export function AuthForm() {
           Authentication isn&apos;t configured yet
         </p>
         <p className="mt-2">
-          Set the <code className="rounded bg-background-subtle px-1 py-0.5 text-xs">NEXT_PUBLIC_FIREBASE_*</code>{" "}
-          environment variables (see <code className="rounded bg-background-subtle px-1 py-0.5 text-xs">.env.local.example</code>)
-          to enable sign-in. Every free tool still works without an account.
+          Set the{" "}
+          <code className="rounded bg-background-subtle px-1 py-0.5 text-xs">
+            NEXT_PUBLIC_FIREBASE_*
+          </code>{" "}
+          environment variables (see{" "}
+          <code className="rounded bg-background-subtle px-1 py-0.5 text-xs">
+            .env.local.example
+          </code>
+          ) to enable sign-in. Every free tool still works without an account.
         </p>
       </div>
     );
@@ -98,7 +109,9 @@ export function AuthForm() {
               setInfo(null);
             }}
             className={`flex-1 py-2 text-sm font-medium transition-colors ${
-              mode === m ? "bg-accent text-accent-foreground" : "bg-transparent text-foreground-muted hover:bg-surface-hover"
+              mode === m
+                ? "bg-accent text-accent-foreground"
+                : "bg-transparent text-foreground-muted hover:bg-surface-hover"
             }`}
           >
             {m === "sign-in" ? "Sign in" : "Create account"}
@@ -107,14 +120,19 @@ export function AuthForm() {
       </div>
 
       <div className="mb-4 flex flex-col gap-2">
-        <button type="button" onClick={() => handleProvider("google")} disabled={submitting} className={`${secondaryButtonClass} w-full`}>
+        <button
+          type="button"
+          onClick={() => handleProvider("google")}
+          disabled={submitting}
+          className={`${secondaryButtonClass} w-full`}
+        >
           <GoogleIcon className="h-4 w-4" />
           Continue with Google
         </button>
-        <button type="button" onClick={() => handleProvider("github")} disabled={submitting} className={`${secondaryButtonClass} w-full`}>
+        {/* <button type="button" onClick={() => handleProvider("github")} disabled={submitting} className={`${secondaryButtonClass} w-full`}>
           <Github className="h-4 w-4" />
           Continue with GitHub
-        </button>
+        </button> */}
       </div>
 
       <div className="mb-4 flex items-center gap-3 text-xs text-foreground-subtle">
@@ -127,7 +145,12 @@ export function AuthForm() {
         {mode === "sign-up" ? (
           <div>
             <label className={labelClass}>Name</label>
-            <input value={name} onChange={(event) => setName(event.target.value)} className={inputClass} placeholder="Ada Lovelace" />
+            <input
+              value={name}
+              onChange={(event) => setName(event.target.value)}
+              className={inputClass}
+              placeholder="Ada Lovelace"
+            />
           </div>
         ) : null}
         <div>
@@ -162,13 +185,21 @@ export function AuthForm() {
         ) : null}
         {info ? <p className="text-xs text-success">{info}</p> : null}
 
-        <button type="submit" disabled={submitting} className={`${primaryButtonClass} w-full`}>
+        <button
+          type="submit"
+          disabled={submitting}
+          className={`${primaryButtonClass} w-full`}
+        >
           <Mail className="h-3.5 w-3.5" />
           {mode === "sign-in" ? "Sign in" : "Create account"}
         </button>
 
         {mode === "sign-in" ? (
-          <button type="button" onClick={handleForgotPassword} className="text-center text-xs text-foreground-subtle hover:text-foreground">
+          <button
+            type="button"
+            onClick={handleForgotPassword}
+            className="text-center text-xs text-foreground-subtle hover:text-foreground"
+          >
             Forgot password?
           </button>
         ) : null}
