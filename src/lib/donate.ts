@@ -26,7 +26,7 @@ export const DONATE_METHODS: DonateMethod[] = [
     region: "Worldwide · any card",
     note: "No account needed, pay by card in seconds",
     value: "buymeacoffee.com/abbasaliab3",
-    href: "buymeacoffee.com/abbasaliab3",
+    href: "https://buymeacoffee.com/abbasaliab3",
     ctaLabel: "Buy me a coffee",
     accentClass: "bg-[#FFDD00]/25 text-[#8a6d00] dark:text-[#FFDD00]",
     highlighted: true,
