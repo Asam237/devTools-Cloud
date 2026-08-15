@@ -65,10 +65,10 @@ export function DonateMethodCard({
 
   return (
     <div
-      className={`relative flex flex-col rounded-xl border p-6 transition-colors ${
+      className={`relative flex flex-col rounded-xl border p-6 transition-all duration-200 hover:-translate-y-0.5 ${
         method.highlighted
-          ? "border-accent bg-surface shadow-lg shadow-accent/10"
-          : "border-border bg-surface hover:border-foreground-subtle"
+          ? "border-accent bg-surface shadow-lg shadow-accent/10 hover:shadow-xl hover:shadow-accent/15"
+          : "border-border bg-surface hover:border-foreground-subtle hover:shadow-md"
       }`}
     >
       {method.badge ? (

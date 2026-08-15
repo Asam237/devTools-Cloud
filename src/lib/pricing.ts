@@ -9,7 +9,7 @@ export const DONATE_FAQ: DonateFaq[] = [
   {
     question: "Why donations instead of a paid plan?",
     answer:
-      "Card processors like Stripe don't currently support merchants based in Cameroon, so a subscription plan isn't billable yet. Direct donations (Buy Me a Coffee, Orange Money, crypto) work today and go straight to keeping the project running.",
+      "Card processors like Stripe don't currently support merchants based in Cameroon, so a subscription plan isn't billable yet. Direct donations (Buy Me a Coffee, crypto) work today and go straight to keeping the project running.",
   },
   {
     question: "Will free tools ever be paywalled?",

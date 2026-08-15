@@ -33,16 +33,6 @@ export const DONATE_METHODS: DonateMethod[] = [
     badge: "Easiest — works everywhere",
   },
   {
-    id: "om",
-    name: "Orange Money",
-    region: "Cameroon",
-    note: "Send to this number",
-    value: "+237 691 846 922",
-    copyable: true,
-    ctaLabel: "Copy OM number",
-    accentClass: "bg-[#FF6600]/15 text-[#FF6600]",
-  },
-  {
     id: "binance",
     name: "Binance Pay / USDT",
     region: "Worldwide · crypto",

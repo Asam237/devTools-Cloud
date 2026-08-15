@@ -7,7 +7,7 @@ import { isFirebaseAdminConfigured } from "@/lib/firebase/admin";
 import { listPublicSnippetsAdmin } from "@/lib/firebase/admin-snippets";
 import { TOOLS } from "@/lib/tools-registry";
 import { primaryButtonClass, secondaryButtonClass } from "@/lib/utils";
-import { Clock, Download, FolderKanban, Plus, Puzzle, SquareCode } from "lucide-react";
+import { Clock, Download, FolderKanban, Heart, Plus, Puzzle, SquareCode } from "lucide-react";
 import Link from "next/link";
 
 const DASHBOARD_BENEFITS = [
@@ -150,19 +150,26 @@ export default async function Home() {
       </section>
 
       <section id="pricing" className="scroll-mt-20 border-t border-border bg-background-subtle py-24">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6">
-          <div className="mx-auto mb-12 max-w-xl">
-            <h2 className="text-3xl font-semibold tracking-tight text-foreground">No paywall, ever.</h2>
-            <p className="mt-3 text-foreground-muted">
-              Every tool, no account required, no tiers. If DevTools Cloud saved you time, support it directly —
-              Buy Me a Coffee, Orange Money, or crypto.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mx-auto max-w-3xl px-4 text-center sm:px-6">
+          <p className="mb-3 flex items-center justify-center gap-2 text-sm font-medium text-accent">
+            <Heart className="h-4 w-4" />
+            No paywall, ever
+          </p>
+          <h2 className="text-3xl font-semibold tracking-tight text-foreground">Every tool, free forever.</h2>
+          <p className="mx-auto mt-3 max-w-lg text-foreground-muted">
+            No account required, no tiers. If DevTools Cloud saved you time, support it directly — Buy Me a
+            Coffee or crypto.
+          </p>
+
+          <div className="mx-auto mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2">
             {DONATE_METHODS.map((method) => (
               <DonateMethodCard key={method.id} method={method} />
             ))}
           </div>
+
+          <Link href="/pricing" className="mt-6 inline-block text-sm font-medium text-accent hover:underline">
+            More ways to support →
+          </Link>
         </div>
       </section>
     </>
