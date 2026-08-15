@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>DevTools Cloud</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header class="app-header">
+      <span class="app-mark">&gt;_</span>
+      <span class="app-title">DevTools Cloud</span>
+    </header>
+
+    <nav class="tabs" id="tabs" role="tablist">
+      <button class="tab" data-tool="json" role="tab" aria-selected="true">JSON</button>
+      <button class="tab" data-tool="jwt" role="tab" aria-selected="false">JWT</button>
+      <button class="tab" data-tool="base64" role="tab" aria-selected="false">Base64</button>
+      <button class="tab" data-tool="url" role="tab" aria-selected="false">URL</button>
+      <button class="tab" data-tool="uuid" role="tab" aria-selected="false">UUID</button>
+      <button class="tab" data-tool="hash" role="tab" aria-selected="false">Hash</button>
+    </nav>
+
+    <main id="panels">
+      <!-- JSON Formatter -->
+      <section class="panel" data-panel="json">
+        <textarea id="json-input" class="input" placeholder="Paste JSON..." spellcheck="false"></textarea>
+        <div class="row">
+          <button id="json-format" class="btn btn-primary">Format</button>
+          <button id="json-minify" class="btn">Minify</button>
+          <button id="json-copy" class="btn btn-ghost" data-copy-target="json-output">Copy</button>
+        </div>
+        <p id="json-error" class="error" hidden></p>
+        <pre id="json-output" class="output"></pre>
+      </section>
+
+      <!-- JWT Decoder -->
+      <section class="panel" data-panel="jwt" hidden>
+        <textarea id="jwt-input" class="input" placeholder="Paste a JWT..." spellcheck="false"></textarea>
+        <p id="jwt-error" class="error" hidden></p>
+        <div class="field-label">Header</div>
+        <pre id="jwt-header" class="output"></pre>
+        <div class="field-label">Payload</div>
+        <pre id="jwt-payload" class="output"></pre>
+        <div id="jwt-claims" class="claims"></div>
+      </section>
+
+      <!-- Base64 -->
+      <section class="panel" data-panel="base64" hidden>
+        <textarea id="base64-input" class="input" placeholder="Text to encode/decode..." spellcheck="false"></textarea>
+        <div class="row">
+          <button id="base64-encode" class="btn btn-primary">Encode</button>
+          <button id="base64-decode" class="btn">Decode</button>
+          <button id="base64-copy" class="btn btn-ghost" data-copy-target="base64-output">Copy</button>
+        </div>
+        <p id="base64-error" class="error" hidden></p>
+        <pre id="base64-output" class="output"></pre>
+      </section>
+
+      <!-- URL Encoder -->
+      <section class="panel" data-panel="url" hidden>
+        <textarea id="url-input" class="input" placeholder="Text or URL..." spellcheck="false"></textarea>
+        <div class="row">
+          <button id="url-encode" class="btn btn-primary">Encode</button>
+          <button id="url-decode" class="btn">Decode</button>
+          <button id="url-copy" class="btn btn-ghost" data-copy-target="url-output">Copy</button>
+        </div>
+        <p id="url-error" class="error" hidden></p>
+        <pre id="url-output" class="output"></pre>
+      </section>
+
+      <!-- UUID Generator -->
+      <section class="panel" data-panel="uuid" hidden>
+        <div class="row">
+          <button id="uuid-v4" class="btn btn-primary">Generate v4</button>
+          <button id="uuid-v7" class="btn">Generate v7</button>
+        </div>
+        <div id="uuid-list" class="uuid-list"></div>
+      </section>
+
+      <!-- Hash Generator -->
+      <section class="panel" data-panel="hash" hidden>
+        <textarea id="hash-input" class="input" placeholder="Text to hash..." spellcheck="false"></textarea>
+        <div id="hash-list" class="hash-list"></div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <a href="https://devtools.cloud/devtools" target="_blank" rel="noopener noreferrer">More tools on devtools.cloud →</a>
+    </footer>
+
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>

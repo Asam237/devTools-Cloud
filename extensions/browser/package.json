@@ -1,0 +1,18 @@
+{
+  "name": "devtools-cloud-browser-extension",
+  "version": "0.1.0",
+  "private": true,
+  "description": "DevTools Cloud tools (JSON, JWT, Base64, URL, UUID, Hash) as a browser extension popup.",
+  "license": "MIT",
+  "scripts": {
+    "build": "node build.mjs",
+    "watch": "node build.mjs --watch",
+    "typecheck": "tsc --noEmit",
+    "package": "npm run build && node zip.mjs"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.280",
+    "esbuild": "^0.28.2",
+    "typescript": "^5"
+  }
+}

@@ -12,6 +12,8 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Sub-projects with their own tooling/tsconfig (browser & editor extensions).
+    "extensions/**",
   ]),
 ]);
 

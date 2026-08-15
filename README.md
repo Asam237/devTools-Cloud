@@ -60,6 +60,10 @@ npm run lint     # eslint
 npm run start    # serve a production build
 ```
 
+## Extensions
+
+- [Browser extension](extensions/browser) — JSON, JWT, Base64, URL, UUID, and Hash tools in a toolbar popup (Chrome/Edge, Manifest V3). A code-editor extension is planned next.
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for how to add a tool, the project structure, and coding conventions. Please also read our [Code of Conduct](CODE_OF_CONDUCT.md).
