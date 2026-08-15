@@ -1,0 +1,101 @@
+rules_version = '2';
+
+// Mirrors the data model in do-it.md §28. Every user-scoped document tree is
+// locked to its owner; every workspace-scoped tree is locked to members.
+// Nothing here is a substitute for encrypting sensitive values (API keys,
+// tokens, environment variables) before they are ever written — see §29.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    function isWorkspaceMember(workspaceId) {
+      return isSignedIn() &&
+        exists(/databases/$(database)/documents/workspaces/$(workspaceId)/members/$(request.auth.uid));
+    }
+
+    function isSnippetOwner(snippetData) {
+      return isSignedIn() && request.auth.uid == snippetData.ownerId;
+    }
+
+    match /users/{userId} {
+      allow read, write: if isOwner(userId);
+
+      match /projects/{projectId} {
+        allow read, write: if isOwner(userId);
+
+        match /collections/{collectionId} {
+          allow read, write: if isOwner(userId);
+        }
+
+        match /requests/{requestId} {
+          allow read, write: if isOwner(userId);
+        }
+
+        match /environments/{environmentId} {
+          allow read, write: if isOwner(userId);
+        }
+      }
+
+      match /history/{historyId} {
+        allow read, write: if isOwner(userId);
+      }
+
+      match /folders/{folderId} {
+        allow read, write: if isOwner(userId);
+      }
+    }
+
+    // Snippets live at the top level (not nested under users/{userId}) so a
+    // snippet ID alone is globally addressable at /snippets/{id} for sharing —
+    // visibility controls read access, ownership controls write access.
+    match /snippets/{snippetId} {
+      allow read: if resource.data.visibility != "private" || isSnippetOwner(resource.data);
+      allow create: if isSignedIn() && request.resource.data.ownerId == request.auth.uid;
+      allow update, delete: if isSnippetOwner(resource.data);
+
+      // Comments are immutable once posted (no edit/delete UI in v1) and only
+      // make sense on a snippet the commenter can actually see.
+      match /comments/{commentId} {
+        allow read: if get(/databases/$(database)/documents/snippets/$(snippetId)).data.visibility != "private";
+        allow create: if isSignedIn()
+          && request.resource.data.authorId == request.auth.uid
+          && get(/databases/$(database)/documents/snippets/$(snippetId)).data.visibility != "private";
+        allow update, delete: if false;
+      }
+    }
+
+    match /workspaces/{workspaceId} {
+      allow read: if isWorkspaceMember(workspaceId);
+      // Workspace creation/settings changes go through a Cloud Function so
+      // membership and billing state stay consistent — no direct client writes.
+      allow write: if false;
+
+      match /members/{memberId} {
+        allow read: if isWorkspaceMember(workspaceId);
+        allow write: if false;
+      }
+
+      match /projects/{projectId} {
+        allow read, write: if isWorkspaceMember(workspaceId);
+      }
+
+      match /collections/{collectionId} {
+        allow read, write: if isWorkspaceMember(workspaceId);
+      }
+    }
+
+    // Feedback is create-only and requires sign-in — there is no App Check or
+    // server-side validation yet, so gating behind auth is the spam control.
+    match /feedback/{feedbackId} {
+      allow create: if isSignedIn() && request.resource.data.userId == request.auth.uid;
+      allow read: if isOwner(resource.data.userId);
+      allow update, delete: if false;
+    }
+  }
+}
