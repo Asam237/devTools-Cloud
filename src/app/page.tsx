@@ -1,5 +1,6 @@
 import { DashboardCta } from "@/components/dashboard-cta";
 import { DonateMethodCard } from "@/components/donate-method-card";
+import { JsonHighlight } from "@/components/json-highlight";
 import { SnippetCard } from "@/components/snippets/snippet-card";
 import { ToolsExplorer } from "@/components/tools-explorer";
 import { DONATE_METHODS } from "@/lib/donate";
@@ -7,7 +8,20 @@ import { isFirebaseAdminConfigured } from "@/lib/firebase/admin";
 import { listPublicSnippetsAdmin } from "@/lib/firebase/admin-snippets";
 import { TOOLS } from "@/lib/tools-registry";
 import { primaryButtonClass, secondaryButtonClass } from "@/lib/utils";
-import { Clock, Download, FolderKanban, Heart, Plus, Puzzle, SquareCode } from "lucide-react";
+import {
+  Clock,
+  Download,
+  FolderKanban,
+  Github,
+  Heart,
+  LayoutDashboard,
+  Plus,
+  Puzzle,
+  ShieldCheck,
+  SquareCode,
+  Users,
+  Zap,
+} from "lucide-react";
 import Link from "next/link";
 
 const DASHBOARD_BENEFITS = [
@@ -24,22 +38,83 @@ const EXTENSION_STEPS = [
   "Click \"Load unpacked\" and select the unzipped folder.",
 ];
 
+const HERO_TRUST_POINTS = [
+  { icon: Zap, label: "Instant — nothing to load" },
+  { icon: ShieldCheck, label: "100% client-side" },
+  { icon: Github, label: "Open source" },
+];
+
+const GITHUB_URL = "https://github.com/Asam237/devTools-Cloud";
+
 export default async function Home() {
   const communitySnippets = isFirebaseAdminConfigured ? await listPublicSnippetsAdmin({ limit: 6 }) : [];
 
+  const heroPreviewJson = `{
+  "tool": "JSON Formatter",
+  "runsIn": "your browser",
+  "sentToServer": false,
+  "toolsAvailable": ${TOOLS.length},
+  "openSource": true
+}`;
+
   return (
     <>
-      <section className="mx-auto flex w-full max-w-4xl flex-col items-center px-4 pb-16 pt-20 text-center sm:px-6 sm:pt-28">
-        <p className="mb-4 text-sm font-medium text-accent">{TOOLS.length} tools, always free</p>
-        <h1 className="text-4xl font-semibold tracking-tight text-foreground sm:text-6xl">
-          One toolbox for
-          <br />
-          every developer
-        </h1>
-        <p className="mt-5 max-w-xl text-balance text-base leading-relaxed text-foreground-muted sm:text-lg">
-          Format JSON, decode JWTs, test regex, generate UUIDs, and more — processed entirely in your
-          browser. Nothing you paste ever reaches a server. No sign-up required.
-        </p>
+      <section className="relative overflow-hidden">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute left-1/2 top-0 -z-10 h-[36rem] w-[72rem] -translate-x-1/2 -translate-y-1/3 rounded-full bg-accent/15 blur-[130px]"
+        />
+
+        <div className="mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-12 px-4 pb-16 pt-20 sm:px-6 sm:pt-28 lg:grid-cols-[1.15fr_1fr] lg:gap-8">
+          <div>
+            <p className="mb-4 text-sm font-medium text-accent">{TOOLS.length} tools, always free</p>
+            <h1 className="text-4xl font-semibold tracking-tight text-foreground sm:text-6xl">
+              One toolbox for
+              <br />
+              every developer
+            </h1>
+            <p className="mt-5 max-w-xl text-balance text-base leading-relaxed text-foreground-muted sm:text-lg">
+              Format JSON, decode JWTs, test regex, generate UUIDs, and more — processed entirely in your
+              browser. Nothing you paste ever reaches a server. No sign-up required.
+            </p>
+
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              <a href="#tools" className={primaryButtonClass}>
+                Browse the tools
+              </a>
+              <a
+                href={GITHUB_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={secondaryButtonClass}
+              >
+                <Github className="h-3.5 w-3.5" />
+                Star on GitHub
+              </a>
+            </div>
+
+            <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs font-medium text-foreground-subtle">
+              {HERO_TRUST_POINTS.map(({ icon: Icon, label }) => (
+                <span key={label} className="flex items-center gap-1.5">
+                  <Icon className="h-3.5 w-3.5 text-accent" />
+                  {label}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="relative hidden lg:block">
+            <div className="overflow-hidden rounded-xl border border-border bg-surface shadow-2xl shadow-black/10">
+              <div className="flex items-center gap-1.5 border-b border-border bg-background-subtle px-4 py-2.5">
+                <span className="h-2.5 w-2.5 rounded-full bg-red-400/70" />
+                <span className="h-2.5 w-2.5 rounded-full bg-amber-400/70" />
+                <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/70" />
+                <span className="ml-2 text-xs text-foreground-subtle">json-formatter</span>
+              </div>
+              <JsonHighlight json={heroPreviewJson} className="p-5 font-mono text-sm leading-relaxed" />
+            </div>
+          </div>
+        </div>
       </section>
 
       <ToolsExplorer />
@@ -83,11 +158,14 @@ export default async function Home() {
         </div>
       </section>
 
-      <section className="border-t border-border py-24">
+      <section className="border-t border-border bg-background-subtle py-24">
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
           <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
             <div>
-              <p className="mb-3 text-sm font-medium text-accent">Community</p>
+              <p className="mb-3 flex items-center gap-2 text-sm font-medium text-accent">
+                <Users className="h-4 w-4" />
+                Community
+              </p>
               <h2 className="text-3xl font-semibold tracking-tight text-foreground">Snippets, shared by developers</h2>
               <p className="mt-3 max-w-xl text-foreground-muted">
                 Public code shared by people using DevTools Cloud — search it, copy it, or publish your own in seconds.
@@ -124,7 +202,10 @@ export default async function Home() {
       <section className="border-t border-border py-24">
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
           <div className="mx-auto mb-12 max-w-xl text-center">
-            <p className="mb-3 text-sm font-medium text-accent">Your account</p>
+            <p className="mb-3 flex items-center justify-center gap-2 text-sm font-medium text-accent">
+              <LayoutDashboard className="h-4 w-4" />
+              Your account
+            </p>
             <h2 className="text-3xl font-semibold tracking-tight text-foreground">One sign-in, everything saved</h2>
             <p className="mt-3 text-foreground-muted">
               Still free, still no paywall — signing in just means DevTools Cloud remembers your work.
