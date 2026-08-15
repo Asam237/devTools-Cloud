@@ -26,10 +26,9 @@ export const adminConfig = {
   clientEmail:
     process.env.FIREBASE_ADMIN_CLIENT_EMAIL ||
     "firebase-adminsdk-fbsvc@devtools-cloud.iam.gserviceaccount.com",
-  privateKey: (
+  privateKey:
     process.env.FIREBASE_ADMIN_PRIVATE_KEY ||
-    `REDACTED_PRIVATE_KEY`
-  ).replace(/\\n/g, "\n"),
+    `REDACTED_PRIVATE_KEY`,
 };
 
 // Flags de vérification de la configuration
