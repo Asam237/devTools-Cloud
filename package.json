@@ -2,6 +2,12 @@
   "name": "devtools-cloud",
   "version": "0.1.0",
   "private": true,
+  "description": "One toolbox for every developer — free, client-side developer tools.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Asam237/devTools-Cloud.git"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",

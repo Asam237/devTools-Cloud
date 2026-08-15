@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# DevTools Cloud
 
-## Getting Started
+One toolbox for every developer — free, client-side developer tools in your browser. No data ever leaves your machine: every tool listed below runs entirely in JavaScript in the page, with nothing sent to a server.
 
-First, run the development server:
+**[devtools.cloud](https://devtools.cloud)** _(placeholder — update once the domain is live)_
+
+## Tools
+
+- JSON Formatter, JSON Diff, JSON → TypeScript, JSON → Zod
+- JWT Decoder
+- UUID Generator
+- Regex Tester
+- Cron Generator
+- Timestamp Converter
+- Base64 Encoder / Decoder
+- URL Encoder / Decoder
+- HTML Encoder / Decoder
+- SQL Formatter
+- YAML ↔ JSON Converter
+- XML ↔ JSON Converter
+- CSV ↔ JSON Converter
+- Hash Generator
+- Color Converter
+- Password Generator
+
+New tools are added regularly — see [CONTRIBUTING.md](CONTRIBUTING.md) if you'd like to add one.
+
+## Why open source
+
+DevTools Cloud is built in the open because the tools are more useful the more developers rely on them and shape them. Contributions — new tools, bug fixes, translations, browser and editor extensions — are welcome.
+
+## Tech stack
+
+- [Next.js](https://nextjs.org) (App Router) + TypeScript + Tailwind CSS
+- [Firebase](https://firebase.google.com) (Auth, Firestore, Storage) for accounts and the dashboard — entirely optional at dev time
+- Hosted on Vercel
+
+## Getting started
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000). All client-side tools work immediately with no configuration — Firebase is only needed for sign-in and the dashboard.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+To enable auth locally, copy the env template and fill in a Firebase Web App config:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+cp .env.local.example .env.local
+```
 
-## Learn More
+See [.env.local.example](.env.local.example) for what each variable does.
 
-To learn more about Next.js, take a look at the following resources:
+### Other commands
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+npm run build    # production build (also type-checks)
+npm run lint     # eslint
+npm run start    # serve a production build
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Contributing
 
-## Deploy on Vercel
+See [CONTRIBUTING.md](CONTRIBUTING.md) for how to add a tool, the project structure, and coding conventions. Please also read our [Code of Conduct](CODE_OF_CONDUCT.md).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Security
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Found a vulnerability? Please see [SECURITY.md](SECURITY.md) instead of opening a public issue.
+
+## License
+
+[MIT](LICENSE)
