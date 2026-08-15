@@ -1,34 +1,21 @@
 import { type FirebaseApp, getApps, initializeApp } from "firebase/app";
 
-// Configuration Firebase Client (avec valeurs par défaut)
+// Configuration Firebase Client
 const firebaseConfig = {
-  apiKey:
-    process.env.NEXT_PUBLIC_FIREBASE_API_KEY ||
-    "REDACTED_API_KEY",
-  authDomain:
-    process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN ||
-    "devtools-cloud.firebaseapp.com",
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || "devtools-cloud",
-  storageBucket:
-    process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET ||
-    "devtools-cloud.firebasestorage.app",
-  messagingSenderId:
-    process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID || "755061458556",
-  appId:
-    process.env.NEXT_PUBLIC_FIREBASE_APP_ID ||
-    "1:755061458556:web:96fb90fae00133ab856bf9",
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
   measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
 };
 
-// Configuration Firebase Admin (avec valeurs par défaut - Côté Serveur)
+// Configuration Firebase Admin (Côté Serveur)
 export const adminConfig = {
-  projectId: process.env.FIREBASE_ADMIN_PROJECT_ID || "devtools-cloud",
-  clientEmail:
-    process.env.FIREBASE_ADMIN_CLIENT_EMAIL ||
-    "firebase-adminsdk-fbsvc@devtools-cloud.iam.gserviceaccount.com",
-  privateKey:
-    process.env.FIREBASE_ADMIN_PRIVATE_KEY ||
-    `REDACTED_PRIVATE_KEY`,
+  projectId: process.env.FIREBASE_ADMIN_PROJECT_ID,
+  clientEmail: process.env.FIREBASE_ADMIN_CLIENT_EMAIL,
+  privateKey: process.env.FIREBASE_ADMIN_PRIVATE_KEY,
 };
 
 // Flags de vérification de la configuration
