@@ -4,6 +4,8 @@ import { CopyButton } from "@/components/copy-button";
 import { QrCode } from "@/components/qr-code";
 import type { DonateMethod } from "@/lib/donate";
 import { logDonateEvent } from "@/lib/firebase/analytics";
+import { useTrackedHref } from "@/lib/use-tracked-href";
+import { getStoredUtm } from "@/lib/utm";
 import { Bitcoin, Coffee, ExternalLink, QrCode as QrCodeIcon, Smartphone, Wallet } from "lucide-react";
 import type { ComponentType } from "react";
 import { useState } from "react";
@@ -26,9 +28,10 @@ export function DonateMethodCard({
 }) {
   const Icon = METHOD_ICONS[method.id] ?? Wallet;
   const [qrOpen, setQrOpen] = useState(false);
+  const trackedHref = useTrackedHref(method.href);
 
   function handleAction() {
-    logDonateEvent("donate_method_click", { method: method.id, method_name: method.name });
+    logDonateEvent("donate_method_click", { method: method.id, method_name: method.name, ...getStoredUtm() });
     onAction?.();
   }
 
@@ -47,7 +50,7 @@ export function DonateMethodCard({
 
         {method.href ? (
           <a
-            href={method.href}
+            href={trackedHref}
             target="_blank"
             rel="noopener noreferrer"
             onClick={handleAction}
@@ -112,7 +115,7 @@ export function DonateMethodCard({
 
       {method.href ? (
         <a
-          href={method.href}
+          href={trackedHref}
           target="_blank"
           rel="noopener noreferrer"
           onClick={handleAction}

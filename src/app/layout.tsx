@@ -5,6 +5,7 @@ import { HistorySync } from "@/components/history-sync";
 import { SignupBanner } from "@/components/signup-banner";
 import { SiteHeader } from "@/components/site-header";
 import { SmartPaste } from "@/components/smart-paste";
+import { UtmCapture } from "@/components/utm-capture";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -68,6 +69,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <SignupBanner />
           <SiteHeader />
           <HistorySync />
+          <UtmCapture />
           <div className="flex flex-1 flex-col">{children}</div>
           <footer className="border-t border-border">
             <div className="mx-auto flex max-w-6xl flex-col items-center gap-2 px-4 py-8 text-xs text-foreground-subtle sm:flex-row sm:justify-between sm:px-6">

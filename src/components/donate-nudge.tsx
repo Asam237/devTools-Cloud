@@ -4,6 +4,7 @@ import { DonateMethodCard } from "@/components/donate-method-card";
 import { DONATE_METHODS } from "@/lib/donate";
 import { logDonateEvent } from "@/lib/firebase/analytics";
 import { DONATE_NUDGE_EVENT, acceptDonateNudge, shouldShowDonateNudge, snoozeDonateNudge } from "@/lib/utils";
+import { getStoredUtm } from "@/lib/utm";
 import { Heart, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -21,19 +22,19 @@ export function DonateNudge() {
   }, []);
 
   useEffect(() => {
-    if (visible) logDonateEvent("donate_nudge_shown");
+    if (visible) logDonateEvent("donate_nudge_shown", getStoredUtm());
   }, [visible]);
 
   if (!visible) return null;
 
   function dismiss() {
-    logDonateEvent("donate_nudge_dismissed");
+    logDonateEvent("donate_nudge_dismissed", getStoredUtm());
     snoozeDonateNudge();
     setVisible(false);
   }
 
   function handleAction() {
-    logDonateEvent("donate_nudge_accepted");
+    logDonateEvent("donate_nudge_accepted", getStoredUtm());
     acceptDonateNudge();
     setVisible(false);
   }
