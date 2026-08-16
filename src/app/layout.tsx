@@ -4,6 +4,7 @@ import { FeedbackWidget } from "@/components/feedback/feedback-widget";
 import { HistorySync } from "@/components/history-sync";
 import { SignupBanner } from "@/components/signup-banner";
 import { SiteHeader } from "@/components/site-header";
+import { SmartPaste } from "@/components/smart-paste";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -76,6 +77,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           </footer>
           <FeedbackWidget />
           <DonateNudge />
+          <SmartPaste />
         </AuthProvider>
       </body>
     </html>
