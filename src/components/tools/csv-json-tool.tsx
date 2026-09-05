@@ -1,6 +1,7 @@
 "use client";
 
 import { CopyButton } from "@/components/copy-button";
+import { ShareResultButton } from "@/components/share-result-button";
 import { csvToJson, jsonToCsv } from "@/lib/csv-json";
 import { useHistoryDataRecorder } from "@/lib/use-history-data-recorder";
 import { useRestorableInput } from "@/lib/use-restorable-input";
@@ -85,6 +86,7 @@ export function CsvJsonTool() {
             <label className={labelClass}>{mode === "csv-to-json" ? "JSON" : "CSV"}</label>
             <div className="flex items-center gap-2">
               <CopyButton value={output} />
+              <ShareResultButton value={output} toolName="CSV / JSON Converter" toolSlug="csv-json-converter" />
               <button
                 type="button"
                 disabled={!output}

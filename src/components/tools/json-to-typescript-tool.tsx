@@ -1,6 +1,7 @@
 "use client";
 
 import { CopyButton } from "@/components/copy-button";
+import { ShareResultButton } from "@/components/share-result-button";
 import { jsonToTypeScript } from "@/lib/json-to-typescript";
 import { useHistoryDataRecorder } from "@/lib/use-history-data-recorder";
 import { useRestorableInput } from "@/lib/use-restorable-input";
@@ -50,6 +51,7 @@ export function JsonToTypeScriptTool() {
         </div>
         <div className="ml-auto">
           <CopyButton value={output} />
+          <ShareResultButton value={output} toolName="JSON to TypeScript" toolSlug="json-to-typescript" language="TypeScript" />
         </div>
       </div>
 

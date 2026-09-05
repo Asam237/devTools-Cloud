@@ -2,6 +2,7 @@
 
 import { CopyButton } from "@/components/copy-button";
 import { JsonHighlight } from "@/components/json-highlight";
+import { ShareResultButton } from "@/components/share-result-button";
 import { useHistoryDataRecorder } from "@/lib/use-history-data-recorder";
 import { useRestorableInput } from "@/lib/use-restorable-input";
 import { downloadTextFile } from "@/lib/utils";
@@ -74,6 +75,7 @@ export function JsonFormatterTool() {
         </button>
         <div className="ml-auto flex items-center gap-2">
           <CopyButton value={output} />
+          <ShareResultButton value={output} toolName="JSON Formatter" toolSlug="json-formatter" language="JSON" />
           <button
             type="button"
             disabled={!output}

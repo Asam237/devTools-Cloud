@@ -1,6 +1,7 @@
 "use client";
 
 import { CopyButton } from "@/components/copy-button";
+import { ShareResultButton } from "@/components/share-result-button";
 import { useHistoryDataRecorder } from "@/lib/use-history-data-recorder";
 import { useRestorableInput } from "@/lib/use-restorable-input";
 import { labelClass, secondaryButtonClass, textareaClass } from "@/lib/utils";
@@ -99,6 +100,7 @@ export function HtmlEncoderTool() {
           <div className="mb-1.5 flex items-center justify-between">
             <label className={labelClass}>{mode === "encode" ? "Encoded HTML" : "Decoded text"}</label>
             <CopyButton value={output} />
+            <ShareResultButton value={output} toolName="HTML Encoder / Decoder" toolSlug="html-encoder" language="HTML" />
           </div>
           <textarea
             readOnly

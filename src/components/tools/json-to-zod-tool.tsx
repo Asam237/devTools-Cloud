@@ -1,6 +1,7 @@
 "use client";
 
 import { CopyButton } from "@/components/copy-button";
+import { ShareResultButton } from "@/components/share-result-button";
 import { jsonToZod } from "@/lib/json-to-zod";
 import { useHistoryDataRecorder } from "@/lib/use-history-data-recorder";
 import { useRestorableInput } from "@/lib/use-restorable-input";
@@ -46,6 +47,7 @@ export function JsonToZodTool() {
         </div>
         <div className="ml-auto">
           <CopyButton value={output} />
+          <ShareResultButton value={output} toolName="JSON to Zod" toolSlug="json-to-zod" language="TypeScript" />
         </div>
       </div>
 

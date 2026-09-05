@@ -1,6 +1,7 @@
 "use client";
 
 import { CopyButton } from "@/components/copy-button";
+import { ShareResultButton } from "@/components/share-result-button";
 import { useHistoryDataRecorder } from "@/lib/use-history-data-recorder";
 import { useRestorableInput } from "@/lib/use-restorable-input";
 import { downloadTextFile, labelClass, secondaryButtonClass, textareaClass } from "@/lib/utils";
@@ -84,6 +85,7 @@ export function YamlJsonConverterTool() {
             <label className={labelClass}>{mode === "yaml-to-json" ? "JSON" : "YAML"}</label>
             <div className="flex items-center gap-2">
               <CopyButton value={output} />
+              <ShareResultButton value={output} toolName="YAML / JSON Converter" toolSlug="yaml-json-converter" language="YAML" />
               <button
                 type="button"
                 disabled={!output}

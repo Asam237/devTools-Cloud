@@ -1,6 +1,7 @@
 "use client";
 
 import { CopyButton } from "@/components/copy-button";
+import { ShareResultButton } from "@/components/share-result-button";
 import { useHistoryDataRecorder } from "@/lib/use-history-data-recorder";
 import { useRestorableInput } from "@/lib/use-restorable-input";
 import { inputClass, labelClass, secondaryButtonClass, textareaClass } from "@/lib/utils";
@@ -74,6 +75,7 @@ export function UrlEncoderTool() {
         <div className="mb-1.5 flex items-center justify-between">
           <label className={labelClass}>Output</label>
           <CopyButton value={output} />
+          <ShareResultButton value={output} toolName="URL Encoder / Decoder" toolSlug="url-encoder" />
         </div>
         <input readOnly value={output} placeholder="Output will appear here..." className={`${inputClass} font-mono`} />
       </div>

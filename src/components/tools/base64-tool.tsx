@@ -1,6 +1,7 @@
 "use client";
 
 import { CopyButton } from "@/components/copy-button";
+import { ShareResultButton } from "@/components/share-result-button";
 import { useHistoryDataRecorder } from "@/lib/use-history-data-recorder";
 import { useRestorableInput } from "@/lib/use-restorable-input";
 import { labelClass, secondaryButtonClass, textareaClass } from "@/lib/utils";
@@ -81,6 +82,7 @@ export function Base64Tool() {
           <div className="mb-1.5 flex items-center justify-between">
             <label className={labelClass}>{mode === "encode" ? "Base64" : "Plain text"}</label>
             <CopyButton value={output} />
+            <ShareResultButton value={output} toolName="Base64 Encoder / Decoder" toolSlug="base64-encoder" />
           </div>
           <textarea
             readOnly

@@ -1,6 +1,7 @@
 "use client";
 
 import { CopyButton } from "@/components/copy-button";
+import { ShareResultButton } from "@/components/share-result-button";
 import { diffJson, diffValueToString, type DiffLine } from "@/lib/json-diff";
 import { useHistoryDataRecorder } from "@/lib/use-history-data-recorder";
 import { useRestorableJson } from "@/lib/use-restorable-input";
@@ -113,6 +114,11 @@ export function JsonDiffTool() {
               Show unchanged
             </label>
             <CopyButton value={visibleLines.map(diffLineToText).join("\n\n")} label="Copy diff" />
+            <ShareResultButton
+              value={visibleLines.map(diffLineToText).join("\n\n")}
+              toolName="JSON Diff"
+              toolSlug="json-diff"
+            />
           </div>
           <div className="overflow-hidden rounded-xl border border-border">
             {visibleLines.length === 0 ? (

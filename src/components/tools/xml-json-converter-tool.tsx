@@ -1,6 +1,7 @@
 "use client";
 
 import { CopyButton } from "@/components/copy-button";
+import { ShareResultButton } from "@/components/share-result-button";
 import { useHistoryDataRecorder } from "@/lib/use-history-data-recorder";
 import { useRestorableInput } from "@/lib/use-restorable-input";
 import { downloadTextFile, labelClass, secondaryButtonClass, textareaClass } from "@/lib/utils";
@@ -159,6 +160,7 @@ export function XmlJsonConverterTool() {
             <label className={labelClass}>{mode === "xml-to-json" ? "JSON" : "XML"}</label>
             <div className="flex items-center gap-2">
               <CopyButton value={output} />
+              <ShareResultButton value={output} toolName="XML / JSON Converter" toolSlug="xml-json-converter" />
               <button
                 type="button"
                 disabled={!output}
